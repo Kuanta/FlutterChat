@@ -1,18 +1,17 @@
-import 'package:flash_chat/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flash_chat/router/app_state.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  final Function changeStateFunc;
-  const WelcomeScreen(this.changeStateFunc);
+  final AppState appState;
+  const WelcomeScreen(this.appState);
   @override
-  _WelcomeScreenState createState() => _WelcomeScreenState(changeStateFunc);
+  _WelcomeScreenState createState() => _WelcomeScreenState(appState: appState);
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  Function Call;
-  _WelcomeScreenState(Function _call) {
-    Call = _call;
-  }
+  AppState appState;
+  _WelcomeScreenState({@required this.appState});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +49,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: MaterialButton(
                   onPressed: () {
                     //Go to login screen.
-                    Call(AppStates.Login);
+                    appState.ChangeAppState(AppStates.Login);
                   },
                   minWidth: 200.0,
                   height: 42.0,
@@ -69,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: MaterialButton(
                   onPressed: () {
                     //Go to registration screen.
-                    Call(AppStates.Register);
+                    appState.ChangeAppState(AppStates.Register);
                   },
                   minWidth: 200.0,
                   height: 42.0,
